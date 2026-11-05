@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Foodie Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div id="loginView" class="login card" style="display:none">
+  <h2>Admin login</h2>
+  <form id="loginForm">
+    <label>Password<input type="password" id="pw" autocomplete="current-password" required></label>
+    <div class="msg" id="loginMsg"></div>
+    <button class="btn">Log in</button>
+  </form>
+</div>
+
+<div id="app" class="adm" style="display:none">
+  <div class="top"><div><h1>Foodie Admin</h1><a href="/" style="font-size:13px;color:var(--mute)">View site</a></div>
+  <button class="btn out" id="logout">Log out</button></div>
+  <div class="tabs"><button class="chip on" data-t="dishes">Dishes</button><button class="chip" data-t="settings">Contact info</button></div>
+
+  <div id="tab-dishes">
+    <div class="card"><h2 id="formTitle">Add a dish</h2>
+    <form id="dishForm">
+      <input type="hidden" id="did">
+      <label>Photo<input type="file" id="dimg" accept="image/*"></label>
+      <img class="pv" id="pv" alt="">
+      <label>Name<input id="dname" required maxlength="80"></label>
+      <div class="two"><label>Price (₦)<input id="dprice" type="number" min="0" inputmode="numeric" required></label>
+      <label>Category<input id="dcat" list="cats" placeholder="e.g. Rice" maxlength="30"></label></div>
+      <datalist id="cats"></datalist>
+      <label>Short description<textarea id="ddesc" rows="2" maxlength="140"></textarea></label>
+      <label class="chk"><input type="checkbox" id="dsold"> Sold out for now</label>
+      <div class="msg" id="dmsg"></div>
+      <div class="row"><button class="btn" id="dsave">Save dish</button><button type="button" class="btn out" id="dcancel" style="display:none">Cancel</button></div>
+    </form></div>
+    <div class="card"><h2>Your dishes</h2><div id="list"></div></div>
+  </div>
+
+  <div id="tab-settings" style="display:none"><div class="card"><h2>Contact info</h2>
+    <form id="setForm">
+      <label>WhatsApp number<input id="swa" inputmode="numeric" placeholder="2348012345678"></label>
+      <p style="font-size:12px;color:var(--mute)">Country code first, no plus sign or spaces. Orders and reservations go to this number.</p>
+      <label>Address<input id="sad"></label>
+      <label>Opening hours<input id="shr"></label>
+      <div class="msg" id="smsg"></div>
+      <button class="btn">Save</button>
+    </form></div></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="/admin.js"></script>
+</body>
+</html>
